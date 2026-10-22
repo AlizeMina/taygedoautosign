@@ -1,5 +1,5 @@
 {
-  "versionCode": 123,
+  "versionCode": 122,
   "versionName": "1.2.2",
   "downloadUrl": "https://github.com/alizemina/taygedoautosign/releases/latest/download/taygedoautosign.apk",
   "changelog": "## v1.2.2\n\n- 新增版本自动检查功能\n- 可在应用内直接下载并安装更新\n- 优化签到流程稳定性"
