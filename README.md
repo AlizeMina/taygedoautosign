@@ -3,7 +3,7 @@
 > 塔吉多（老虎平台）社区自动签到 Android 应用 — 多账号 · 定时签到 · 零依赖构建
 
 <p align="center">
-  <img src="favicon.ico" width="96" alt="logo"/>
+  <img src=".\favicon.ico" width="96" alt="logo"/>
 </p>
 
 ---
