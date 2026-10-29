@@ -1,6 +1,6 @@
 {
-  "versionCode": 122,
-  "versionName": "1.2.2",
+  "versionCode": 123,
+  "versionName": "1.2.3",
   "downloadUrl": "https://github.com/alizemina/taygedoautosign/releases/latest/download/taygedoautosign.apk",
-  "changelog": "## v1.2.2\n\n- 新增版本自动检查功能\n- 可在应用内直接下载并安装更新\n- 优化签到流程稳定性"
+  "changelog": "## v1.2.3\n\n- 修复「更多设置」页面每次进入都弹出已开启提示的问题\n- 修复锁屏/Doze 模式下定时签到失败的问题，添加 WakeLock 保护\n- 网络请求超时从 15 秒增加到 30 秒，提高弱网和 Doze 模式下的签到成功率"
 }
