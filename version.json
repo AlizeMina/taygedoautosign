@@ -1,6 +1,6 @@
 {
-  "versionCode": 123,
-  "versionName": "1.2.3",
+  "versionCode": 124,
+  "versionName": "1.2.4",
   "downloadUrl": "https://github.com/alizemina/taygedoautosign/releases/latest/download/taygedoautosign.apk",
-  "changelog": "## v1.2.3\n\n- 修复「更多设置」页面每次进入都弹出已开启提示的问题\n- 修复锁屏/Doze 模式下定时签到失败的问题，添加 WakeLock 保护\n- 网络请求超时从 15 秒增加到 30 秒，提高弱网和 Doze 模式下的签到成功率"
+  "changelog": "## v1.2.4\n\n- 【重要】修复锁屏后第三方自动化工具启动 App 无法签到的问题：请求前自动等待网络恢复，最多轮询 15 秒，彻底解决 Doze 模式下网络栈未就绪导致的 ETIMEDOUT / DNS 解析失败\n- 【重要】修复首次失败后后续全部报「End of input at character 0 of」的连锁故障：禁用 HttpURLConnection Keep-Alive 防止坏连接被复用，并在空响应体时主动抛出可重试异常\n- 新增 HTTP 请求指数退避重试机制：对超时 / DNS 失败 / 连接拒绝等网络类异常自动重试 3 次（间隔 2s → 5s → 8s），大幅提升弱网与 Doze 恢复场景的签到成功率\n- 新增 DNS 预解析缓存：构造 LoginClient 时预解析 user.laohu.com / bbs-api.tajiduo.com 写入系统 DNS 缓存，降低首次请求超时概率\n- 网络请求底层重构：原 httpGet / httpPost 合并为统一 httpRequest，重试逻辑、空响应保护、Connection: close 全部内聚到底层，上层业务代码无感知"
 }
