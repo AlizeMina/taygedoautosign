@@ -23,13 +23,17 @@
 ## 项目结构
 
 ```
-Taygedo Auto Sign（1.2.2 apk源码）/
+Taygedo Auto Sign（apk源码）/
 ├── android-build/              # APK 构建系统（完整独立）
 │   ├── app/                    # ★ Java 源码 & AndroidManifest.xml
 │   │   ├── MainActivity.java       主界面（登录 / 签到 / 账号管理）
 │   │   ├── LoginActivity.java      登录页
-│   │   ├── MoreActivity.java       更多设置页
+│   │   ├── MoreActivity.java       更多设置页（液态玻璃风格 / 背景图等开关）
 │   │   ├── AddSenderActivity.java  添加发件箱
+│   │   ├── GachaActivity.java      抽卡分析页（纵向展示各卡池完整记录）
+│   │   ├── GachaHistoryStore.java  抽卡记录本地累积存储
+│   │   ├── GachaImporter.java      抽卡记录导入 / 导出
+│   │   ├── GlassUi.java            液态玻璃风格 & 自定义背景图工具
 │   │   ├── AndroidManifest.xml     清单文件
 │   │   ├── AccountStore.java       账号持久化（SharedPreferences + JSON）
 │   │   ├── LoginClient.java        塔吉多 / 老虎平台完整 HTTP 客户端
@@ -39,11 +43,14 @@ Taygedo Auto Sign（1.2.2 apk源码）/
 │   │   ├── UpdateChecker.java      Gitee 静态 JSON 版本检测器
 │   │   ├── DailySignTracker.java   每日签到记录追踪
 │   │   ├── CryptoUtils.java        设备 ID 生成 & 加密工具
-│   │   └── LocalFileProvider.java  极简 FileProvider（APK 安装授权）
+│   │   ├── LocalFileProvider.java  极简 FileProvider（APK 安装授权）
+│   │   ├── assets/                 内置资源（默认背景壁纸 default_bg.jpg）
+│   │   └── lib/                    本地 JAR 依赖目录
 │   ├── jdk/jdk-17.0.20.1+1/    # 内嵌 JDK 17
 │   ├── sdk/                    # 内嵌 Android SDK
 │   │   ├── platforms/android-33/
 │   │   └── build-tools/34.0.0/
+│   ├── output/                 # 构建产物（TaygedoAutoSign.apk）
 │   ├── build.py                # ★ 构建入口脚本（Python 3）
 │   ├── debug.keystore          # 调试签名密钥（自动生成）
 │   └── work/                   # 构建中间产物（自动生成）
@@ -148,6 +155,18 @@ Android 原生工具（`aapt2` / `d8` / `javac`）对含中文或特殊字符的
 参见 [version.json](version.json)。
 
 ---
+
+## Taygedo Auto Sign v2.0.0
+
+- 【重要通知】此版本起存储占用将会有所增加，但依旧很小，功耗也不会显著增加（部分功能将会带来额外功耗，请自行评估是否接受）
+- 新增「抽卡分析」功能（位于主页账号行的「退出」左侧）：直接使用已保存的 Token 登录，按竖屏纵向展示限定卡池 / 常驻卡池 / 弧盘池的完整抽卡记录
+- 抽卡分析支持欧非标注、抽取次数红黄绿区分，并修复头像与完整记录展示
+- 抽卡记录支持「导入 / 导出」备份，优先读取本地累积数据，官方接口不可用时自动回退展示本地记录
+- 「更多设置」新增「液态玻璃风格」开关（默认关闭）：开启后所有页面切换为粉白液态玻璃样式，关闭时保持原有样式。该功能会带来少量额外功耗，请自行考虑是否开启。
+- 新增「自定义背景图」（仅液态玻璃风格生效）：提供内置默认壁纸，可从相册选择图片，等比铺满显示并适配顶部系统状态栏；新增「恢复默认」按钮一键还原默认壁纸
+- 优化切换液态玻璃风格 / 背景图时的体验：设置页与主页不再强制滚回顶部，切换外观也不会重复触发自动登录与自动签到
+- 目前该版本存在除首次更换背景图外，更换背景图无法更换主页面背景图的特性，可通过恢复默认壁纸解决，后续会优化并修复该特性
+- 如需回退至 v1.3.0 或以下版本，请卸载新版本后再下载旧版本使用
 
 ## Taygedo Auto Sign v1.3.0
 
