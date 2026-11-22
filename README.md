@@ -26,14 +26,14 @@
 Taygedo Auto Sign（apk源码）/
 ├── android-build/              # APK 构建系统（完整独立）
 │   ├── app/                    # ★ Java 源码 & AndroidManifest.xml
-│   │   ├── MainActivity.java       主界面（登录 / 签到 / 账号管理）
+│   │   ├── MainActivity.java       主界面（登录 / 签到 / 账号管理 / 登录方式展示）
 │   │   ├── LoginActivity.java      登录页
-│   │   ├── MoreActivity.java       更多设置页（液态玻璃风格 / 背景图等开关）
+│   │   ├── MoreActivity.java       更多设置页（液态玻璃 / 自定义背景 / 同步开关）
 │   │   ├── AddSenderActivity.java  添加发件箱
-│   │   ├── GachaActivity.java      抽卡分析页（纵向展示各卡池完整记录）
+│   │   ├── GachaActivity.java      抽卡分析页（记录展示 / 导入导出）
 │   │   ├── GachaHistoryStore.java  抽卡记录本地累积存储
-│   │   ├── GachaImporter.java      抽卡记录导入 / 导出
-│   │   ├── GlassUi.java            液态玻璃风格 & 自定义背景图工具
+│   │   ├── GachaImporter.java      抽卡记录导入解析
+│   │   ├── GlassUi.java            液态玻璃风格 & 背景图渲染
 │   │   ├── AndroidManifest.xml     清单文件
 │   │   ├── AccountStore.java       账号持久化（SharedPreferences + JSON）
 │   │   ├── LoginClient.java        塔吉多 / 老虎平台完整 HTTP 客户端
@@ -44,13 +44,11 @@ Taygedo Auto Sign（apk源码）/
 │   │   ├── DailySignTracker.java   每日签到记录追踪
 │   │   ├── CryptoUtils.java        设备 ID 生成 & 加密工具
 │   │   ├── LocalFileProvider.java  极简 FileProvider（APK 安装授权）
-│   │   ├── assets/                 内置资源（默认背景壁纸 default_bg.jpg）
-│   │   └── lib/                    本地 JAR 依赖目录
+│   │   └── assets/default_bg.jpg   内置默认壁纸
 │   ├── jdk/jdk-17.0.20.1+1/    # 内嵌 JDK 17
 │   ├── sdk/                    # 内嵌 Android SDK
 │   │   ├── platforms/android-33/
 │   │   └── build-tools/34.0.0/
-│   ├── output/                 # 构建产物（TaygedoAutoSign.apk）
 │   ├── build.py                # ★ 构建入口脚本（Python 3）
 │   ├── debug.keystore          # 调试签名密钥（自动生成）
 │   └── work/                   # 构建中间产物（自动生成）
@@ -155,6 +153,17 @@ Android 原生工具（`aapt2` / `d8` / `javac`）对含中文或特殊字符的
 参见 [version.json](version.json)。
 
 ---
+
+## Taygedo Auto Sign v2.1.1
+
+- 【重要通知】v2.0.0 版本起存储占用将会有所增加，但依旧很小，功耗也不会显著增加（部分功能将会带来额外功耗，请自行评估是否接受）
+- 主页面新增「本次登录方式」展示，可识别 Token登录 / 密码登录 / 验证码登录 / 未知
+- 自定义背景图升级为主页、二级页面分别设置，并新增「背景同步」开关：开启时二级页面统一跟随主页背景，关闭时两级页面独立更换
+- 开启背景同步时自动隐藏「二级背景图」按钮，「主页背景图」显示为「更改背景图」，与「恢复默认」各占一行的一半
+- 修复第二次更换背景图后主页面背景不刷新的问题
+- 修复关闭背景同步后首次更换背景仍被同步到二级页面的问题
+- 修复 Token 登录方式无法识别的问题（今日已签场景同样识别为 Token登录）
+- 如需回退至早期版本，请卸载新版本后再下载旧版本使用
 
 ## Taygedo Auto Sign v2.0.0
 
